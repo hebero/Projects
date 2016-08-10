@@ -1,0 +1,9 @@
+c:\users\estudiante\documents\visual studio 2015\Projects\StreamExample\Strem01\bin\Debug\Strem01.exe.config
+c:\users\estudiante\documents\visual studio 2015\Projects\StreamExample\Strem01\bin\Debug\Strem01.exe
+c:\users\estudiante\documents\visual studio 2015\Projects\StreamExample\Strem01\bin\Debug\Strem01.pdb
+c:\users\estudiante\documents\visual studio 2015\Projects\StreamExample\Strem01\obj\Debug\Strem01.csprojResolveAssemblyReference.cache
+c:\users\estudiante\documents\visual studio 2015\Projects\StreamExample\Strem01\obj\Debug\Strem01.frmArchivo.resources
+c:\users\estudiante\documents\visual studio 2015\Projects\StreamExample\Strem01\obj\Debug\Strem01.Properties.Resources.resources
+c:\users\estudiante\documents\visual studio 2015\Projects\StreamExample\Strem01\obj\Debug\Strem01.csproj.GenerateResource.Cache
+c:\users\estudiante\documents\visual studio 2015\Projects\StreamExample\Strem01\obj\Debug\Strem01.exe
+c:\users\estudiante\documents\visual studio 2015\Projects\StreamExample\Strem01\obj\Debug\Strem01.pdb

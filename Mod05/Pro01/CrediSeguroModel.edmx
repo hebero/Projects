@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CrediSeguroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="CodCliente" />
+          </Key>
+          <Property Name="CodCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DPI" Type="int" Nullable="false" />
+          <Property Name="NombrePrimero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreSegundo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApellidoPrimero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApellidoSegundo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FecNacimiento" Type="datetime" Nullable="false" />
+          <Property Name="NIT" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movimiento">
+          <Key>
+            <PropertyRef Name="CodMovimiento" />
+          </Key>
+          <Property Name="CodMovimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodTarjeta" Type="int" Nullable="false" />
+          <Property Name="Cargo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Abono" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="CodTarjeta" />
+          </Key>
+          <Property Name="CodTarjeta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodCliente" Type="int" Nullable="false" />
+          <Property Name="NumeroTarjeta" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="FecVencimiento" Type="datetime" Nullable="false" />
+          <Property Name="LimiteCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SaldoActual" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FecSaldo" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Movimiento_Tarjeta">
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="1" />
+          <End Role="Movimiento" Type="Self.Movimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarjeta">
+              <PropertyRef Name="CodTarjeta" />
+            </Principal>
+            <Dependent Role="Movimiento">
+              <PropertyRef Name="CodTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarjeta_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="CodCliente" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="CodCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CrediSeguroModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movimiento" EntityType="Self.Movimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Movimiento_Tarjeta" Association="Self.FK_Movimiento_Tarjeta">
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+            <End Role="Movimiento" EntitySet="Movimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarjeta_Cliente" Association="Self.FK_Tarjeta_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CrediSeguroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="CodCliente" />
+          </Key>
+          <Property Name="CodCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DPI" Type="Int32" Nullable="false" />
+          <Property Name="NombrePrimero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreSegundo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApellidoPrimero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApellidoSegundo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FecNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NIT" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.FK_Tarjeta_Cliente" FromRole="Cliente" ToRole="Tarjeta" />
+        </EntityType>
+        <EntityType Name="Movimiento">
+          <Key>
+            <PropertyRef Name="CodMovimiento" />
+          </Key>
+          <Property Name="CodMovimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodTarjeta" Type="Int32" Nullable="false" />
+          <Property Name="Cargo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Abono" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.FK_Movimiento_Tarjeta" FromRole="Movimiento" ToRole="Tarjeta" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="CodTarjeta" />
+          </Key>
+          <Property Name="CodTarjeta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodCliente" Type="Int32" Nullable="false" />
+          <Property Name="NumeroTarjeta" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FecVencimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LimiteCredito" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SaldoActual" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FecSaldo" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Tarjeta_Cliente" FromRole="Tarjeta" ToRole="Cliente" />
+          <NavigationProperty Name="Movimiento" Relationship="Self.FK_Movimiento_Tarjeta" FromRole="Tarjeta" ToRole="Movimiento" />
+        </EntityType>
+        <Association Name="FK_Tarjeta_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="CodCliente" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="CodCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimiento_Tarjeta">
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="1" />
+          <End Role="Movimiento" Type="Self.Movimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarjeta">
+              <PropertyRef Name="CodTarjeta" />
+            </Principal>
+            <Dependent Role="Movimiento">
+              <PropertyRef Name="CodTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CrediSeguroEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Movimiento" EntityType="Self.Movimiento" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" />
+          <AssociationSet Name="FK_Tarjeta_Cliente" Association="Self.FK_Tarjeta_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimiento_Tarjeta" Association="Self.FK_Movimiento_Tarjeta">
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+            <End Role="Movimiento" EntitySet="Movimiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CrediSeguroModelStoreContainer" CdmEntityContainer="CrediSeguroEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="CrediSeguroModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
+                <ScalarProperty Name="DPI" ColumnName="DPI" />
+                <ScalarProperty Name="NombrePrimero" ColumnName="NombrePrimero" />
+                <ScalarProperty Name="NombreSegundo" ColumnName="NombreSegundo" />
+                <ScalarProperty Name="ApellidoPrimero" ColumnName="ApellidoPrimero" />
+                <ScalarProperty Name="ApellidoSegundo" ColumnName="ApellidoSegundo" />
+                <ScalarProperty Name="FecNacimiento" ColumnName="FecNacimiento" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movimiento">
+            <EntityTypeMapping TypeName="CrediSeguroModel.Movimiento">
+              <MappingFragment StoreEntitySet="Movimiento">
+                <ScalarProperty Name="CodMovimiento" ColumnName="CodMovimiento" />
+                <ScalarProperty Name="CodTarjeta" ColumnName="CodTarjeta" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Abono" ColumnName="Abono" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarjeta">
+            <EntityTypeMapping TypeName="CrediSeguroModel.Tarjeta">
+              <MappingFragment StoreEntitySet="Tarjeta">
+                <ScalarProperty Name="CodTarjeta" ColumnName="CodTarjeta" />
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
+                <ScalarProperty Name="NumeroTarjeta" ColumnName="NumeroTarjeta" />
+                <ScalarProperty Name="FecVencimiento" ColumnName="FecVencimiento" />
+                <ScalarProperty Name="LimiteCredito" ColumnName="LimiteCredito" />
+                <ScalarProperty Name="SaldoActual" ColumnName="SaldoActual" />
+                <ScalarProperty Name="FecSaldo" ColumnName="FecSaldo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
