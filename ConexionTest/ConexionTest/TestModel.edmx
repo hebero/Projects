@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EleganciaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblBodega">
+          <Key>
+            <PropertyRef Name="ID_BODEGA" />
+          </Key>
+          <Property Name="ID_BODEGA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE" Type="text" Nullable="false" />
+          <Property Name="DIRECCION" Type="text" Nullable="false" />
+          <Property Name="MAX_CAP" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCLIENTE">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CLIENTE" Type="text" Nullable="false" />
+          <Property Name="NIT" Type="int" Nullable="false" />
+          <Property Name="TELEFONO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDETALLEFACT">
+          <Key>
+            <PropertyRef Name="ID_DETALLE" />
+          </Key>
+          <Property Name="ID_DETALLE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_FACTURA" Type="int" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
+          <Property Name="CANTIDAD" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDETALLEMOV">
+          <Key>
+            <PropertyRef Name="ID_DETALLEMOV" />
+          </Key>
+          <Property Name="ID_DETALLEMOV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_MOVIMIENTO" Type="int" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
+          <Property Name="CANTIDAD" Type="int" Nullable="false" />
+          <Property Name="FECHAVENCIMIENTO" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFACTURA">
+          <Key>
+            <PropertyRef Name="ID_FACTURA" />
+          </Key>
+          <Property Name="ID_FACTURA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SERIE" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="int" Nullable="false" />
+          <Property Name="DIRCLIENTE" Type="text" Nullable="false" />
+          <Property Name="NOMCLIENTE" Type="text" Nullable="false" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="ID_BODEGA" Type="int" Nullable="false" />
+          <Property Name="ESTADOFAC" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tblInventario">
+          <Key>
+            <PropertyRef Name="ID_INVENTARIO" />
+          </Key>
+          <Property Name="ID_INVENTARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BODEGA" Type="int" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
+          <Property Name="EXISTENCIA" Type="int" Nullable="false" />
+          <Property Name="PROD_ESTADO" Type="bit" Nullable="false" />
+          <Property Name="FECHA_IN" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMovimiento">
+          <Key>
+            <PropertyRef Name="ID_MOVIMIENTO" />
+          </Key>
+          <Property Name="ID_MOVIMIENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BODEGA" Type="int" Nullable="false" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProducto">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SKU" Type="int" Nullable="false" />
+          <Property Name="PROD_NOMBRE" Type="text" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblDETALLEFACT_tblFACTURA">
+          <End Role="tblFACTURA" Type="Self.tblFACTURA" Multiplicity="1" />
+          <End Role="tblDETALLEFACT" Type="Self.tblDETALLEFACT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFACTURA">
+              <PropertyRef Name="ID_FACTURA" />
+            </Principal>
+            <Dependent Role="tblDETALLEFACT">
+              <PropertyRef Name="ID_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDETALLEFACT_tblProducto">
+          <End Role="tblProducto" Type="Self.tblProducto" Multiplicity="1" />
+          <End Role="tblDETALLEFACT" Type="Self.tblDETALLEFACT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducto">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Principal>
+            <Dependent Role="tblDETALLEFACT">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDETALLEMOV_tblMovimiento1">
+          <End Role="tblMovimiento" Type="Self.tblMovimiento" Multiplicity="1" />
+          <End Role="tblDETALLEMOV" Type="Self.tblDETALLEMOV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMovimiento">
+              <PropertyRef Name="ID_MOVIMIENTO" />
+            </Principal>
+            <Dependent Role="tblDETALLEMOV">
+              <PropertyRef Name="ID_MOVIMIENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDETALLEMOV_tblProducto1">
+          <End Role="tblProducto" Type="Self.tblProducto" Multiplicity="1" />
+          <End Role="tblDETALLEMOV" Type="Self.tblDETALLEMOV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducto">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Principal>
+            <Dependent Role="tblDETALLEMOV">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFACTURA_tblBodega">
+          <End Role="tblBodega" Type="Self.tblBodega" Multiplicity="1" />
+          <End Role="tblFACTURA" Type="Self.tblFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodega">
+              <PropertyRef Name="ID_BODEGA" />
+            </Principal>
+            <Dependent Role="tblFACTURA">
+              <PropertyRef Name="ID_BODEGA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFACTURA_tblCLIENTE">
+          <End Role="tblCLIENTE" Type="Self.tblCLIENTE" Multiplicity="1" />
+          <End Role="tblFACTURA" Type="Self.tblFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="tblFACTURA">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblInventario_tblBodega">
+          <End Role="tblBodega" Type="Self.tblBodega" Multiplicity="1" />
+          <End Role="tblInventario" Type="Self.tblInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodega">
+              <PropertyRef Name="ID_BODEGA" />
+            </Principal>
+            <Dependent Role="tblInventario">
+              <PropertyRef Name="ID_BODEGA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblInventario_tblProducto">
+          <End Role="tblProducto" Type="Self.tblProducto" Multiplicity="1" />
+          <End Role="tblInventario" Type="Self.tblInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducto">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Principal>
+            <Dependent Role="tblInventario">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMovimiento_tblBodega">
+          <End Role="tblBodega" Type="Self.tblBodega" Multiplicity="1" />
+          <End Role="tblMovimiento" Type="Self.tblMovimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodega">
+              <PropertyRef Name="ID_BODEGA" />
+            </Principal>
+            <Dependent Role="tblMovimiento">
+              <PropertyRef Name="ID_BODEGA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EleganciaDBModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBodega" EntityType="Self.tblBodega" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCLIENTE" EntityType="Self.tblCLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDETALLEFACT" EntityType="Self.tblDETALLEFACT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDETALLEMOV" EntityType="Self.tblDETALLEMOV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFACTURA" EntityType="Self.tblFACTURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInventario" EntityType="Self.tblInventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMovimiento" EntityType="Self.tblMovimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProducto" EntityType="Self.tblProducto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblDETALLEFACT_tblFACTURA" Association="Self.FK_tblDETALLEFACT_tblFACTURA">
+            <End Role="tblFACTURA" EntitySet="tblFACTURA" />
+            <End Role="tblDETALLEFACT" EntitySet="tblDETALLEFACT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDETALLEFACT_tblProducto" Association="Self.FK_tblDETALLEFACT_tblProducto">
+            <End Role="tblProducto" EntitySet="tblProducto" />
+            <End Role="tblDETALLEFACT" EntitySet="tblDETALLEFACT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDETALLEMOV_tblMovimiento1" Association="Self.FK_tblDETALLEMOV_tblMovimiento1">
+            <End Role="tblMovimiento" EntitySet="tblMovimiento" />
+            <End Role="tblDETALLEMOV" EntitySet="tblDETALLEMOV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDETALLEMOV_tblProducto1" Association="Self.FK_tblDETALLEMOV_tblProducto1">
+            <End Role="tblProducto" EntitySet="tblProducto" />
+            <End Role="tblDETALLEMOV" EntitySet="tblDETALLEMOV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFACTURA_tblBodega" Association="Self.FK_tblFACTURA_tblBodega">
+            <End Role="tblBodega" EntitySet="tblBodega" />
+            <End Role="tblFACTURA" EntitySet="tblFACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFACTURA_tblCLIENTE" Association="Self.FK_tblFACTURA_tblCLIENTE">
+            <End Role="tblCLIENTE" EntitySet="tblCLIENTE" />
+            <End Role="tblFACTURA" EntitySet="tblFACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblInventario_tblBodega" Association="Self.FK_tblInventario_tblBodega">
+            <End Role="tblBodega" EntitySet="tblBodega" />
+            <End Role="tblInventario" EntitySet="tblInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblInventario_tblProducto" Association="Self.FK_tblInventario_tblProducto">
+            <End Role="tblProducto" EntitySet="tblProducto" />
+            <End Role="tblInventario" EntitySet="tblInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMovimiento_tblBodega" Association="Self.FK_tblMovimiento_tblBodega">
+            <End Role="tblBodega" EntitySet="tblBodega" />
+            <End Role="tblMovimiento" EntitySet="tblMovimiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EleganciaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblBodega">
+          <Key>
+            <PropertyRef Name="ID_BODEGA" />
+          </Key>
+          <Property Name="ID_BODEGA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MAX_CAP" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblFACTURA" Relationship="Self.FK_tblFACTURA_tblBodega" FromRole="tblBodega" ToRole="tblFACTURA" />
+          <NavigationProperty Name="tblInventario" Relationship="Self.FK_tblInventario_tblBodega" FromRole="tblBodega" ToRole="tblInventario" />
+          <NavigationProperty Name="tblMovimiento" Relationship="Self.FK_tblMovimiento_tblBodega" FromRole="tblBodega" ToRole="tblMovimiento" />
+        </EntityType>
+        <EntityType Name="tblCLIENTE">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CLIENTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIT" Type="Int32" Nullable="false" />
+          <Property Name="TELEFONO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblFACTURA" Relationship="Self.FK_tblFACTURA_tblCLIENTE" FromRole="tblCLIENTE" ToRole="tblFACTURA" />
+        </EntityType>
+        <EntityType Name="tblDETALLEFACT">
+          <Key>
+            <PropertyRef Name="ID_DETALLE" />
+          </Key>
+          <Property Name="ID_DETALLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_FACTURA" Type="Int32" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblFACTURA" Relationship="Self.FK_tblDETALLEFACT_tblFACTURA" FromRole="tblDETALLEFACT" ToRole="tblFACTURA" />
+          <NavigationProperty Name="tblProducto" Relationship="Self.FK_tblDETALLEFACT_tblProducto" FromRole="tblDETALLEFACT" ToRole="tblProducto" />
+        </EntityType>
+        <EntityType Name="tblDETALLEMOV">
+          <Key>
+            <PropertyRef Name="ID_DETALLEMOV" />
+          </Key>
+          <Property Name="ID_DETALLEMOV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_MOVIMIENTO" Type="Int32" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="FECHAVENCIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tblMovimiento" Relationship="Self.FK_tblDETALLEMOV_tblMovimiento1" FromRole="tblDETALLEMOV" ToRole="tblMovimiento" />
+          <NavigationProperty Name="tblProducto" Relationship="Self.FK_tblDETALLEMOV_tblProducto1" FromRole="tblDETALLEMOV" ToRole="tblProducto" />
+        </EntityType>
+        <EntityType Name="tblFACTURA">
+          <Key>
+            <PropertyRef Name="ID_FACTURA" />
+          </Key>
+          <Property Name="ID_FACTURA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SERIE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="DIRCLIENTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMCLIENTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_BODEGA" Type="Int32" Nullable="false" />
+          <Property Name="ESTADOFAC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblBodega" Relationship="Self.FK_tblFACTURA_tblBodega" FromRole="tblFACTURA" ToRole="tblBodega" />
+          <NavigationProperty Name="tblCLIENTE" Relationship="Self.FK_tblFACTURA_tblCLIENTE" FromRole="tblFACTURA" ToRole="tblCLIENTE" />
+          <NavigationProperty Name="tblDETALLEFACT" Relationship="Self.FK_tblDETALLEFACT_tblFACTURA" FromRole="tblFACTURA" ToRole="tblDETALLEFACT" />
+        </EntityType>
+        <EntityType Name="tblInventario">
+          <Key>
+            <PropertyRef Name="ID_INVENTARIO" />
+          </Key>
+          <Property Name="ID_INVENTARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BODEGA" Type="Int32" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="EXISTENCIA" Type="Int32" Nullable="false" />
+          <Property Name="PROD_ESTADO" Type="Boolean" Nullable="false" />
+          <Property Name="FECHA_IN" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tblBodega" Relationship="Self.FK_tblInventario_tblBodega" FromRole="tblInventario" ToRole="tblBodega" />
+          <NavigationProperty Name="tblProducto" Relationship="Self.FK_tblInventario_tblProducto" FromRole="tblInventario" ToRole="tblProducto" />
+        </EntityType>
+        <EntityType Name="tblMovimiento">
+          <Key>
+            <PropertyRef Name="ID_MOVIMIENTO" />
+          </Key>
+          <Property Name="ID_MOVIMIENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BODEGA" Type="Int32" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tblBodega" Relationship="Self.FK_tblMovimiento_tblBodega" FromRole="tblMovimiento" ToRole="tblBodega" />
+          <NavigationProperty Name="tblDETALLEMOV" Relationship="Self.FK_tblDETALLEMOV_tblMovimiento1" FromRole="tblMovimiento" ToRole="tblDETALLEMOV" />
+        </EntityType>
+        <EntityType Name="tblProducto">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SKU" Type="Int32" Nullable="false" />
+          <Property Name="PROD_NOMBRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblDETALLEFACT" Relationship="Self.FK_tblDETALLEFACT_tblProducto" FromRole="tblProducto" ToRole="tblDETALLEFACT" />
+          <NavigationProperty Name="tblDETALLEMOV" Relationship="Self.FK_tblDETALLEMOV_tblProducto1" FromRole="tblProducto" ToRole="tblDETALLEMOV" />
+          <NavigationProperty Name="tblInventario" Relationship="Self.FK_tblInventario_tblProducto" FromRole="tblProducto" ToRole="tblInventario" />
+        </EntityType>
+        <Association Name="FK_tblFACTURA_tblBodega">
+          <End Role="tblBodega" Type="Self.tblBodega" Multiplicity="1" />
+          <End Role="tblFACTURA" Type="Self.tblFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodega">
+              <PropertyRef Name="ID_BODEGA" />
+            </Principal>
+            <Dependent Role="tblFACTURA">
+              <PropertyRef Name="ID_BODEGA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblInventario_tblBodega">
+          <End Role="tblBodega" Type="Self.tblBodega" Multiplicity="1" />
+          <End Role="tblInventario" Type="Self.tblInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodega">
+              <PropertyRef Name="ID_BODEGA" />
+            </Principal>
+            <Dependent Role="tblInventario">
+              <PropertyRef Name="ID_BODEGA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMovimiento_tblBodega">
+          <End Role="tblBodega" Type="Self.tblBodega" Multiplicity="1" />
+          <End Role="tblMovimiento" Type="Self.tblMovimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodega">
+              <PropertyRef Name="ID_BODEGA" />
+            </Principal>
+            <Dependent Role="tblMovimiento">
+              <PropertyRef Name="ID_BODEGA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFACTURA_tblCLIENTE">
+          <End Role="tblCLIENTE" Type="Self.tblCLIENTE" Multiplicity="1" />
+          <End Role="tblFACTURA" Type="Self.tblFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="tblFACTURA">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDETALLEFACT_tblFACTURA">
+          <End Role="tblFACTURA" Type="Self.tblFACTURA" Multiplicity="1" />
+          <End Role="tblDETALLEFACT" Type="Self.tblDETALLEFACT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFACTURA">
+              <PropertyRef Name="ID_FACTURA" />
+            </Principal>
+            <Dependent Role="tblDETALLEFACT">
+              <PropertyRef Name="ID_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDETALLEFACT_tblProducto">
+          <End Role="tblProducto" Type="Self.tblProducto" Multiplicity="1" />
+          <End Role="tblDETALLEFACT" Type="Self.tblDETALLEFACT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducto">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Principal>
+            <Dependent Role="tblDETALLEFACT">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDETALLEMOV_tblMovimiento1">
+          <End Role="tblMovimiento" Type="Self.tblMovimiento" Multiplicity="1" />
+          <End Role="tblDETALLEMOV" Type="Self.tblDETALLEMOV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMovimiento">
+              <PropertyRef Name="ID_MOVIMIENTO" />
+            </Principal>
+            <Dependent Role="tblDETALLEMOV">
+              <PropertyRef Name="ID_MOVIMIENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDETALLEMOV_tblProducto1">
+          <End Role="tblProducto" Type="Self.tblProducto" Multiplicity="1" />
+          <End Role="tblDETALLEMOV" Type="Self.tblDETALLEMOV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducto">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Principal>
+            <Dependent Role="tblDETALLEMOV">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblInventario_tblProducto">
+          <End Role="tblProducto" Type="Self.tblProducto" Multiplicity="1" />
+          <End Role="tblInventario" Type="Self.tblInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducto">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Principal>
+            <Dependent Role="tblInventario">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EleganciaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tblBodega" EntityType="Self.tblBodega" />
+          <EntitySet Name="tblCLIENTE" EntityType="Self.tblCLIENTE" />
+          <EntitySet Name="tblDETALLEFACT" EntityType="Self.tblDETALLEFACT" />
+          <EntitySet Name="tblDETALLEMOV" EntityType="Self.tblDETALLEMOV" />
+          <EntitySet Name="tblFACTURA" EntityType="Self.tblFACTURA" />
+          <EntitySet Name="tblInventario" EntityType="Self.tblInventario" />
+          <EntitySet Name="tblMovimiento" EntityType="Self.tblMovimiento" />
+          <EntitySet Name="tblProducto" EntityType="Self.tblProducto" />
+          <AssociationSet Name="FK_tblFACTURA_tblBodega" Association="Self.FK_tblFACTURA_tblBodega">
+            <End Role="tblBodega" EntitySet="tblBodega" />
+            <End Role="tblFACTURA" EntitySet="tblFACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblInventario_tblBodega" Association="Self.FK_tblInventario_tblBodega">
+            <End Role="tblBodega" EntitySet="tblBodega" />
+            <End Role="tblInventario" EntitySet="tblInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMovimiento_tblBodega" Association="Self.FK_tblMovimiento_tblBodega">
+            <End Role="tblBodega" EntitySet="tblBodega" />
+            <End Role="tblMovimiento" EntitySet="tblMovimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFACTURA_tblCLIENTE" Association="Self.FK_tblFACTURA_tblCLIENTE">
+            <End Role="tblCLIENTE" EntitySet="tblCLIENTE" />
+            <End Role="tblFACTURA" EntitySet="tblFACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDETALLEFACT_tblFACTURA" Association="Self.FK_tblDETALLEFACT_tblFACTURA">
+            <End Role="tblFACTURA" EntitySet="tblFACTURA" />
+            <End Role="tblDETALLEFACT" EntitySet="tblDETALLEFACT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDETALLEFACT_tblProducto" Association="Self.FK_tblDETALLEFACT_tblProducto">
+            <End Role="tblProducto" EntitySet="tblProducto" />
+            <End Role="tblDETALLEFACT" EntitySet="tblDETALLEFACT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDETALLEMOV_tblMovimiento1" Association="Self.FK_tblDETALLEMOV_tblMovimiento1">
+            <End Role="tblMovimiento" EntitySet="tblMovimiento" />
+            <End Role="tblDETALLEMOV" EntitySet="tblDETALLEMOV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDETALLEMOV_tblProducto1" Association="Self.FK_tblDETALLEMOV_tblProducto1">
+            <End Role="tblProducto" EntitySet="tblProducto" />
+            <End Role="tblDETALLEMOV" EntitySet="tblDETALLEMOV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblInventario_tblProducto" Association="Self.FK_tblInventario_tblProducto">
+            <End Role="tblProducto" EntitySet="tblProducto" />
+            <End Role="tblInventario" EntitySet="tblInventario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EleganciaDBModelStoreContainer" CdmEntityContainer="EleganciaDBEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EleganciaDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBodega">
+            <EntityTypeMapping TypeName="EleganciaDBModel.tblBodega">
+              <MappingFragment StoreEntitySet="tblBodega">
+                <ScalarProperty Name="ID_BODEGA" ColumnName="ID_BODEGA" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="MAX_CAP" ColumnName="MAX_CAP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCLIENTE">
+            <EntityTypeMapping TypeName="EleganciaDBModel.tblCLIENTE">
+              <MappingFragment StoreEntitySet="tblCLIENTE">
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="CLIENTE" ColumnName="CLIENTE" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDETALLEFACT">
+            <EntityTypeMapping TypeName="EleganciaDBModel.tblDETALLEFACT">
+              <MappingFragment StoreEntitySet="tblDETALLEFACT">
+                <ScalarProperty Name="ID_DETALLE" ColumnName="ID_DETALLE" />
+                <ScalarProperty Name="ID_FACTURA" ColumnName="ID_FACTURA" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDETALLEMOV">
+            <EntityTypeMapping TypeName="EleganciaDBModel.tblDETALLEMOV">
+              <MappingFragment StoreEntitySet="tblDETALLEMOV">
+                <ScalarProperty Name="ID_DETALLEMOV" ColumnName="ID_DETALLEMOV" />
+                <ScalarProperty Name="ID_MOVIMIENTO" ColumnName="ID_MOVIMIENTO" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="FECHAVENCIMIENTO" ColumnName="FECHAVENCIMIENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFACTURA">
+            <EntityTypeMapping TypeName="EleganciaDBModel.tblFACTURA">
+              <MappingFragment StoreEntitySet="tblFACTURA">
+                <ScalarProperty Name="ID_FACTURA" ColumnName="ID_FACTURA" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="DIRCLIENTE" ColumnName="DIRCLIENTE" />
+                <ScalarProperty Name="NOMCLIENTE" ColumnName="NOMCLIENTE" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="ID_BODEGA" ColumnName="ID_BODEGA" />
+                <ScalarProperty Name="ESTADOFAC" ColumnName="ESTADOFAC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInventario">
+            <EntityTypeMapping TypeName="EleganciaDBModel.tblInventario">
+              <MappingFragment StoreEntitySet="tblInventario">
+                <ScalarProperty Name="ID_INVENTARIO" ColumnName="ID_INVENTARIO" />
+                <ScalarProperty Name="ID_BODEGA" ColumnName="ID_BODEGA" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="EXISTENCIA" ColumnName="EXISTENCIA" />
+                <ScalarProperty Name="PROD_ESTADO" ColumnName="PROD_ESTADO" />
+                <ScalarProperty Name="FECHA_IN" ColumnName="FECHA_IN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMovimiento">
+            <EntityTypeMapping TypeName="EleganciaDBModel.tblMovimiento">
+              <MappingFragment StoreEntitySet="tblMovimiento">
+                <ScalarProperty Name="ID_MOVIMIENTO" ColumnName="ID_MOVIMIENTO" />
+                <ScalarProperty Name="ID_BODEGA" ColumnName="ID_BODEGA" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProducto">
+            <EntityTypeMapping TypeName="EleganciaDBModel.tblProducto">
+              <MappingFragment StoreEntitySet="tblProducto">
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="PROD_NOMBRE" ColumnName="PROD_NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

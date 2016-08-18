@@ -1,1 +1,15 @@
 c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\bin\Debug\Pro01.exe.config
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\bin\Debug\Pro01.exe
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\bin\Debug\Pro01.pdb
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\bin\Debug\EntityFramework.dll
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\bin\Debug\EntityFramework.xml
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\obj\Debug\Pro01.csprojResolveAssemblyReference.cache
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\obj\Debug\Pro01.frmPrincipal.resources
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\obj\Debug\Pro01.Properties.Resources.resources
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\obj\Debug\Pro01.csproj.GenerateResource.Cache
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\obj\Debug\Pro01.exe
+c:\users\estudiante\documents\visual studio 2015\Projects\Mod05\Pro01\obj\Debug\Pro01.pdb
+C:\Users\Estudiante\Documents\Visual Studio 2015\Projects\Mod05\Pro01\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Estudiante\Documents\Visual Studio 2015\Projects\Mod05\Pro01\bin\Debug\Newtonsoft.Json.xml

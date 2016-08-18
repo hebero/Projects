@@ -4,14 +4,29 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9209EFCE-3D41-4ED7-9100-3E9038897642}</ProjectGuid>
+    <ProjectGuid>{47C17AB0-C3EB-4979-8C73-46DF44615CA8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pro01</RootNamespace>
-    <AssemblyName>Pro01</AssemblyName>
+    <RootNamespace>ConexionTest</RootNamespace>
+    <AssemblyName>ConexionTest</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -41,10 +56,6 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -61,38 +72,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cliente.cs">
-      <DependentUpon>CrediSeguroModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ClienteParcial.cs" />
-    <Compile Include="CrediSeguroModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrediSeguroModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CrediSeguroModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrediSeguroModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CrediSeguroModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrediSeguroModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Movimiento.cs">
-      <DependentUpon>CrediSeguroModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tarjeta.cs">
-      <DependentUpon>CrediSeguroModel.tt</DependentUpon>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBodega.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCLIENTE.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDETALLEFACT.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDETALLEMOV.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFACTURA.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblInventario.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMovimiento.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProducto.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestModel.edmx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -106,13 +134,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="CrediSeguroModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CrediSeguroModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="CrediSeguroModel.edmx.diagram">
-      <DependentUpon>CrediSeguroModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -123,20 +144,39 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EntityDeploy Include="TestModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TestModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TestModel.edmx.diagram">
+      <DependentUpon>TestModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CrediSeguroModel.Context.tt">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CrediSeguroModel.edmx</DependentUpon>
-      <LastGenOutput>CrediSeguroModel.Context.cs</LastGenOutput>
+      <DependentUpon>TestModel.edmx</DependentUpon>
+      <LastGenOutput>TestModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="CrediSeguroModel.tt">
+    <Content Include="TestModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CrediSeguroModel.edmx</DependentUpon>
-      <LastGenOutput>CrediSeguroModel.cs</LastGenOutput>
+      <DependentUpon>TestModel.edmx</DependentUpon>
+      <LastGenOutput>TestModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
