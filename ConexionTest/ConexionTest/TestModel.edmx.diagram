@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b6a3ad2dbbb94d9998b851f5c6e4f54d" Name="Diagram1" ZoomLevel="67">
-        <EntityTypeShape EntityType="EleganciaDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EleganciaDBModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="EleganciaDBModel.tblBodega" Width="1.5" PointX="1.5" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EleganciaDBModel.tblCLIENTE" Width="1.5" PointX="1.5" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EleganciaDBModel.tblDETALLEFACT" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EleganciaDBModel.tblDETALLEMOV" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EleganciaDBModel.tblFACTURA" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EleganciaDBModel.tblInventario" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EleganciaDBModel.tblCLIENTE" Width="1.5" PointX="6.375" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EleganciaDBModel.tblDETALLEFACT" Width="1.5" PointX="10.375" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="EleganciaDBModel.tblDETALLEMOV" Width="1.5" PointX="6.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EleganciaDBModel.tblFACTURA" Width="1.5" PointX="4" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EleganciaDBModel.tblInventario" Width="1.5" PointX="9.625" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="EleganciaDBModel.tblMovimiento" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EleganciaDBModel.tblProducto" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EleganciaDBModel.tblProducto" Width="1.5" PointX="3.625" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="EleganciaDBModel.FK_tblFACTURA_tblBodega" ManuallyRouted="false" />
         <AssociationConnector Association="EleganciaDBModel.FK_tblInventario_tblBodega" ManuallyRouted="false" />
         <AssociationConnector Association="EleganciaDBModel.FK_tblMovimiento_tblBodega" ManuallyRouted="false" />
