@@ -16,8 +16,8 @@
                     <label>Código de tarjeta: <asp:TextBox ID="txtCodTar" runat="server" CssClass=" form-control"></asp:TextBox></label>
                     <label>Fecha: <asp:TextBox ID="txtFecha" runat="server" CssClass=" form-control"></asp:TextBox></label>
                     <label>Monto: <asp:TextBox ID="txtMonto" runat="server" CssClass=" form-control"></asp:TextBox></label>
-                    <asp:Button ID="btnBuscar" runat="server" Text="Actualizar" CssClass="btn btn-default" />
-                    <asp:Label ID="lblMensaje" runat="server" Text="" CssClass =" alert alert-danger"></asp:Label>
+                    <asp:Button ID="btnBuscar" runat="server" Text="Actualizar" CssClass="btn btn-default" OnClick="btnBuscar_Click" />
+                    <asp:Label ID="lblMensaje" runat="server" Text="" Visible="false" CssClass =" alert alert-danger"></asp:Label>
                 </form>
             </div>
         </div>

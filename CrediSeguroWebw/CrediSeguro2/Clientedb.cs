@@ -36,5 +36,30 @@ namespace CrediSeguro2
             }
             return;
         }
+        public void Baja(int CodClient, string SQLConexion)
+        {
+            SqlConnection cn;
+            SqlCommand cmd;
+            try
+            {
+                using (cn = new SqlConnection(SQLConexion))
+                {
+                    using (cmd = cn.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "paClienteDelete";
+                        cmd.Parameters.AddWithValue("@CodCliente", SqlDbType.Int).Value = CodClient;
+
+                        cn.Open();
+                        cmd.ExecuteNonQuery();
+                        cn.Close();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

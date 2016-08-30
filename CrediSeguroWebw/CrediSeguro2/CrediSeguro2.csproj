@@ -48,6 +48,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,27 +68,47 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClienteAlta.aspx" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="ClienteDelete.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\tether\tether-theme-arrows-dark.css" />
+    <Content Include="Content\tether\tether-theme-arrows-dark.min.css" />
+    <Content Include="Content\tether\tether-theme-arrows.css" />
+    <Content Include="Content\tether\tether-theme-arrows.min.css" />
+    <Content Include="Content\tether\tether-theme-basic.css" />
+    <Content Include="Content\tether\tether-theme-basic.min.css" />
+    <Content Include="Content\tether\tether.css" />
+    <Content Include="Content\tether\tether.min.css" />
     <Content Include="packages.config" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="dsReportes.xsc">
+      <DependentUpon>dsReportes.xsd</DependentUpon>
+    </Content>
+    <None Include="dsReportes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsReportes.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="dsReportes.xss">
+      <DependentUpon>dsReportes.xsd</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\ProfileIIS.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
+    <Content Include="ReporteClientes.aspx" />
+    <Content Include="Scripts\jquery-3.0.0.js" />
+    <Content Include="Scripts\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.js" />
@@ -107,6 +128,8 @@
     <Content Include="Default.Master" />
     <Content Include="Index.aspx" />
     <Content Include="MovsxTarjeta.aspx" />
+    <Content Include="Scripts\tether\tether.js" />
+    <Content Include="Scripts\tether\tether.min.js" />
     <Content Include="TarjetaAbono.aspx" />
     <Content Include="TarjetaCargo.aspx" />
     <Content Include="TarjetaSaldo.aspx" />
@@ -129,12 +152,24 @@
       <DependentUpon>ClienteAlta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clientedb.cs" />
+    <Compile Include="ClienteDelete.aspx.cs">
+      <DependentUpon>ClienteDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClienteDelete.aspx.designer.cs">
+      <DependentUpon>ClienteDelete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.Master.cs">
       <DependentUpon>Default.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.Master.designer.cs">
       <DependentUpon>Default.Master</DependentUpon>
+    </Compile>
+    <Compile Include="dsReportes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsReportes.xsd</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -158,6 +193,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteClientes.aspx.cs">
+      <DependentUpon>ReporteClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteClientes.aspx.designer.cs">
+      <DependentUpon>ReporteClientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="TarjetaAbono.aspx.cs">
       <DependentUpon>TarjetaAbono.aspx</DependentUpon>
@@ -192,6 +234,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="rptClientes.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

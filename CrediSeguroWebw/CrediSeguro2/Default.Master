@@ -6,9 +6,12 @@
 <head runat="server">
     <meta charset ="utf-8" />
     <title>Default Mater Page</title>
-    <script type ="text/javascript" src ="Scripts/jquery-3.1.0.js"></script>
+    <script type ="text/javascript" src ="Scripts/jquery-3.0.0.js"></script>
+    <script type ="text/javascript" src="Scripts/tether/tether.js"></script>
     <script type ="text/javascript" src ="Scripts/bootstrap.js"></script>
     <link type="text/css" rel ="stylesheet" href="Content/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="Content/tether/tether.css" />
+    <link type="text/css" rel="stylesheet" href="Content/tether/tether-theme-basic.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -16,10 +19,11 @@
    <div class="container">
 	<nav class="navbar navbar-default">
 		<div class="container">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="Index.aspx">Inicio</a></li>
+			<div class="navbar">
+                <ul class ="nav navbar-nav">
+				<li><a href="Index.aspx">Inicio</a></li>
                 <li class ="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="Cliente.aspx">Clientes <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="Cliente.aspx">Clientes<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="Cliente.aspx">Clientes</a></li>
                         <li><a href="ClienteAlta.aspx">Alta</a></li>
@@ -27,7 +31,7 @@
                     </ul>
                 </li>
                 <li class ="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="TarjetaxCliente.aspx">Tarjetas <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tarjetas <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="TarjetaxCliente.aspx">Clientes</a></li>
                         <li><a href="TarjetaSaldo.aspx">Saldo</a></li>
@@ -36,11 +40,15 @@
                     </ul>
                 </li>
 				<li><a href="MovsxTarjeta.aspx">Movs x Tarjeta</a></li>
-			</ul>
+               </ul>
+			</div>
 		</div>
 	</nav>
-   </div>
+       <div>
             <asp:ContentPlaceHolder ID="cphPrincipal" runat="server">
             </asp:ContentPlaceHolder>
+        </div>
+   </div>
+
 </body>
 </html>
