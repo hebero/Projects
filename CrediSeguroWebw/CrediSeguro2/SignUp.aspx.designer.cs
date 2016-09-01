@@ -10,33 +10,42 @@
 namespace CrediSeguro2 {
     
     
-    public partial class Index {
+    public partial class SignUp {
         
         /// <summary>
-        /// frmPrincipal control.
+        /// frmSignUp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmPrincipal;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmSignUp;
         
         /// <summary>
-        /// LoginStatus1 control.
+        /// CreateUserWizard1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginStatus LoginStatus1;
+        protected global::System.Web.UI.WebControls.CreateUserWizard CreateUserWizard1;
         
         /// <summary>
-        /// LoginName1 control.
+        /// CreateUserWizardStep1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginName LoginName1;
+        protected global::System.Web.UI.WebControls.CreateUserWizardStep CreateUserWizardStep1;
+        
+        /// <summary>
+        /// CompleteWizardStep1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompleteWizardStep CompleteWizardStep1;
     }
 }
