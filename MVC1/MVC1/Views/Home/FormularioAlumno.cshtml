@@ -1,0 +1,16 @@
+﻿@model MVC1.Models.Alumno
+
+@{
+    ViewBag.Title = "FormularioAlumno";
+}
+
+<h2>FormularioAlumno</h2>
+<div>
+    @using (Html.BeginForm())
+    {
+        <label>Nombre: </label>@Html.TextBoxFor(x => x.Nombre, new {@class = "form-control" })
+        <label>Nombre: </label>@Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
+        <div class="alert alert-info"> @Html.ValidationSummary()</div>
+        <div> <input class="form-control" type="submit" value="Enviar Datos" /> </div>
+    }
+</div>
