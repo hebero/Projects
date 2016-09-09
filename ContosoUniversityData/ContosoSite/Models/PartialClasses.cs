@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ContosoSite.Models
 {
     [MetadataType(typeof(StudentMetadata))]
-    public partial class PartialClasses
+    public partial class Student
     {
     }
     [MetadataType(typeof(EnrollmentMetadata))]
