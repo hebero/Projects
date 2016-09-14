@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+</head>
+<body>
+    <form id="frmLogin" method="post" action="#">
+        <fieldset>
+            <legend>Inicio de sesión</legend>
+            <label>Usuario</label>
+            <input id="usuario" type="text" placeholder="usuario"/>
+            <label>Contraseña:</label>
+            <input id="clave" type="password" placeholder="contraseña"/>
+            <input id="sesio" type="submit" value="sesion"/>
+        </fieldset>
+    </form>
+    <form id="frmDatos" method="post" action="#">
+        <fieldset>
+            <legend>Datos generales</legend>
+            <label>Seleccione datos del fabricante:</label>
+            <select id="Fabricante">
+                <optgroup label="Europeos">
+                    <option value="audi">Audi</option>
+                    <option value="bmw">BMW</option>
+                </optgroup>
+                <optgroup label="otros">
+                    <option value="toyota">Toyota</option>
+                </optgroup>
+            </select>
+            <label>Seleccione color</label>
+            <input type="color" id="color"/>
+            <label>Fecha de entrega</label>
+            <input id="FechaEntrega" type="date" autocomplete="on"/>
+            <input type="range" max="5" min="1" value="Cantidad"  />
+            <label for="nombre">
+                Nombre:
+                <input id="nombre" type="text" required placeholder="Nombre Apellido" pattern="[A-Za-z\s]{1,50}" />
+            </label>
+            <label for="edad">
+                Edad:
+                <input id="edad" type="number" min="18" max="99" required />
+            </label>
+            <input type="submit" value="Enviar" />
+        </fieldset>
+
+    </form>
+    <form id="frmJS" method="post" action="#">
+        <fieldset>
+            <legend>Validacion de datos</legend>
+            <label for="CodProducto">
+                Código de producto:
+                <input id="CodProducto" type="text" />
+            </label>
+            <label for="Producto">
+                Nombre del producto:
+                <input type="text" id="Producto" />
+            </label>
+            <input id="EnviarProd" type="submit" value="Grabar" />
+        </fieldset>
+    </form>
+
+    <script src="Scripts/jquery-3.1.0.js"></script>
+    <script src="Scripts/jquery-ui-1.12.0.js"></script>
+    <script src="Scripts/DemoValida.js"></script>
+</body>
+</html>
